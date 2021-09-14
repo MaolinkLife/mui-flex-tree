@@ -13,9 +13,6 @@ export class AppComponent {
   }
 
   expandNodeTree(node: FlattenTreeNode): void {
-    console.log(node);
-
     node.isExpand = !node.isExpand;
-    console.log(node);
   }
 }
