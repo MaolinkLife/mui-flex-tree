@@ -110,3 +110,21 @@ export const TREE_DATA = {
     }
   ]
 };
+
+export const CHILD_1 = {
+  data: {
+    name: 'CHILD_1',
+    type: 'TYPE_2',
+    id: 22
+  }
+};
+
+export const CHILD_2 = {
+  type: 'TYPE_2',
+  data: {
+    name: 'CHILD_2',
+    type: 'TYPE_2',
+    id: 41
+  },
+  children: []
+};

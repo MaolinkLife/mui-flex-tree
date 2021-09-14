@@ -40,6 +40,6 @@
 <div *ngIf="node.children && node.children.length && node.isExpand">
   <mui-tree-node *ngFor="let childNode of node.children" [node]="childNode" [level]="currentLevel"
     (expandNodeChange)="expandNodeChange.emit($event)" (selectNodeChange)="selectNodeChange.emit($event)"
-    [parentSelected]="node.isSelect" [attr.id]="node.data.id">
+    [parentSelected]="selected" [attr.id]="node.data.id">
   </mui-tree-node>
 </div>
