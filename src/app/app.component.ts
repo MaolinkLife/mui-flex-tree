@@ -16,10 +16,6 @@ enum TYPES {
 export class AppComponent implements OnInit {
   tree$: BehaviorSubject<FlattenTreeNode> = new BehaviorSubject(null);
 
-  get rootTree(): FlattenTreeNode {
-    return TREE_DATA;
-  }
-
   ngOnInit(): void {
     const tree = this.covertedTree(TREE_DATA);
     this.tree$.next(tree);
@@ -51,10 +47,7 @@ export class AppComponent implements OnInit {
     return flattenNode;
   }
 
-  unSelectTreeNodes(
-    node: FlattenTreeNode,
-    currentNode: FlattenTreeNode
-  ): FlattenTreeNode {
+  unSelectTreeNodes(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
     if (node.children && node.children.length > 0) {
       node.children.forEach((childNode: FlattenTreeNode) =>
         this.unSelectTreeNodes(childNode, currentNode)
@@ -63,9 +56,7 @@ export class AppComponent implements OnInit {
 
     if (currentNode.data.id !== node.data.id) {
       node.isSelect = false;
-      console.log(node);
     }
-    return node;
   }
 
   expandNodeTree(node: FlattenTreeNode): void {

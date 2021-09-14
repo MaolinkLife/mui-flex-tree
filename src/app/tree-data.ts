@@ -1,36 +1,25 @@
 export const TREE_DATA = {
-  expandable: true,
-  type: 'TYPE_1',
   data: {
     name: 'ROOT',
     type: 'TYPE_1',
     id: 0
   },
-  isExpand: true,
-  isSelect: false,
   children: [
     {
-      expandable: false,
-      type: 'TYPE_2',
       data: {
         name: 'CHILD_1',
         type: 'TYPE_2',
         id: 22
       },
-      isExpand: false,
-      isSelect: false,
       children: []
     },
     {
-      expandable: true,
       type: 'TYPE_2',
       data: {
         name: 'CHILD_2',
         type: 'TYPE_2',
         id: 41
       },
-      isExpand: false,
-      isSelect: false,
       children: [
         {
           expandable: false,

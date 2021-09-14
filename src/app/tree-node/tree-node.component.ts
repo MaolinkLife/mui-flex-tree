@@ -43,7 +43,6 @@ export class TreeNodeComponent implements OnInit {
   }
 
   get currentLevel(): number {
-    console.log(this.level);
     return this.level + 1;
   }
   selectNode(event: MouseEvent): void {
