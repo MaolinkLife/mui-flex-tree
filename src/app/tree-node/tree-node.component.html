@@ -1,7 +1,7 @@
 <div class="container" [attr.selected]="selected" (click)="$event.stopPropagation(); selectNode($event)">
   <div class="tree-node" [ngStyle]="{'margin-left': size}">
-    <div *ngIf="node.type !== 'TYPE_1' && node.expandable" class="expand-icon" [ngClass]="{'_expand': node.isExpand}"
-      (click)="$event.stopPropagation(); expandNode($event)">
+    <div *ngIf="node.data.type !== 'TYPE_1' && node.expandable" class="expand-icon"
+      [ngClass]="{'_expand': node.isExpand}" (click)="$event.stopPropagation(); expandNode($event)">
       <div class="icon" size="s" style="width: 8px; height:8px">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
