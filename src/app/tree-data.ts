@@ -99,7 +99,7 @@ export const TREE_DATA = {
           data: {
             name: 'CHILD_5.1',
             type: 'TYPE_3',
-            id: 2
+            id: 101
           },
           isExpand: false,
           isSelect: false,
@@ -111,7 +111,7 @@ export const TREE_DATA = {
           data: {
             name: 'CHILD_5.2',
             type: 'TYPE_3',
-            id: 2
+            id: 99
           },
           isExpand: false,
           isSelect: false,
