@@ -75,9 +75,6 @@ export class AppComponent implements OnInit {
 
   selectNodeTree(node: FlattenTreeNode): void {
     if (!node.isSelect) {
-      const currentNodeSelect = node.isSelect;
-      const root = this.rootTree;
-
       this.unSelectTreeNodes(this.tree$.value, node);
       node.isSelect = true;
     }

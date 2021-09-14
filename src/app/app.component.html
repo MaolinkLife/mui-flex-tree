@@ -1,4 +1,4 @@
 <ng-container *ngIf="tree$ | async as root">
   <mui-tree-node [node]="root" [level]="0" (selectNodeChange)="selectNodeTree($event)"
-    (expandNodeChange)="expandNodeTree($event)"></mui-tree-node>
+    (expandNodeChange)="expandNodeTree($event)" id="{{root.data.id}}"></mui-tree-node>
 </ng-container>

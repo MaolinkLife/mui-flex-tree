@@ -39,6 +39,7 @@
 
 <div *ngIf="node.children && node.children.length && node.isExpand">
   <mui-tree-node *ngFor="let childNode of node.children" [node]="childNode" [level]="level + 1"
-    (expandNodeChange)="expandNodeChange.emit($event)" (selectNodeChange)="selectNodeChange.emit($event)">
+    (expandNodeChange)="expandNodeChange.emit($event)" (selectNodeChange)="selectNodeChange.emit($event)"
+    id="{{node.data.id}}">
   </mui-tree-node>
 </div>
