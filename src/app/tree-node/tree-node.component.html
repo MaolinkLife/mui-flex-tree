@@ -1,0 +1,45 @@
+<div class="container">
+  <div class="tree-node">
+    <div *ngIf="node.type !== 'TYPE_1' && node.expandable" class="expand-icon"
+      (click)="$event.stopPropagation(); expandNode($event)">
+
+      <div class="icon" size="s" style="width: 8px; height:8px">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M19.6839 9.77139L6.35281 0.644989C5.73716 0.223221 5.11684 0 4.60124 0C3.60442 0 2.98779 0.800019 2.98779 2.13915V21.864C2.98779 23.2015 3.60364 24 4.59813 24C5.11451 24 5.72492 23.7766 6.34193 23.3536L19.6792 14.2274C20.5369 13.6396 21.0119 12.8485 21.0119 11.9989C21.0121 11.15 20.5426 10.3591 19.6839 9.77139Z"
+            fill="currentColor" />
+        </svg>
+      </div>
+    </div>
+
+    <div class="tree-node__icon">
+      <div class="icon">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <g clip-path="url(#clip0)">
+            <path
+              d="M15.7324 7.28346L13.3075 4.85859V2.05744C13.3075 1.55096 12.8971 1.14049 12.3899 1.14049C11.8838 1.14049 11.4734 1.55096 11.4734 2.05744V3.02446L9.66785 1.21888C8.77519 0.326697 7.22314 0.32828 6.33251 1.22049L0.269415 7.28346C-0.088503 7.64209 -0.088503 8.22238 0.269415 8.58046C0.627495 8.93899 1.20891 8.93899 1.56686 8.58046L7.62938 2.51732C7.82688 2.32086 8.17498 2.32086 8.37144 2.51674L14.435 8.58046C14.6148 8.75974 14.8492 8.84891 15.0836 8.84891C15.3184 8.84891 15.5532 8.75964 15.7324 8.58046C16.0905 8.22241 16.0905 7.64213 15.7324 7.28346Z"
+              fill="currentColor" />
+            <path
+              d="M8.31885 4.25789C8.1427 4.08184 7.85748 4.08184 7.68185 4.25789L2.34873 9.58943C2.26453 9.6736 2.2168 9.78851 2.2168 9.90843V13.7971C2.2168 14.7095 2.95666 15.4494 3.86912 15.4494H6.50955V11.3602H9.49056V15.4494H12.131C13.0435 15.4494 13.7833 14.7095 13.7833 13.7971V9.90843C13.7833 9.78851 13.736 9.6736 13.6514 9.58943L8.31885 4.25789Z"
+              fill="currentColor" />
+          </g>
+          <defs>
+            <clipPath id="clip0">
+              <rect width="16" height="16" fill="white" />
+            </clipPath>
+          </defs>
+        </svg>
+      </div>
+    </div>
+
+    <div>
+      {{ node.data.name }}
+    </div>
+  </div>
+
+  <div *ngIf="node.children && node.children.length && node.isExpand">
+    <mui-tree-node *ngFor="let childNode of node.children" [node]="childNode" [ngStyle]="{'margin-left': size}"
+      [level]="level + 1" (expandNodeChange)="expandNodeChange.emit($event)">
+    </mui-tree-node>
+  </div>
+</div>
