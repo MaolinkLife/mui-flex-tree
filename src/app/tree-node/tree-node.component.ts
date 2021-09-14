@@ -28,9 +28,7 @@ export class TreeNodeComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.node);
-  }
+  ngOnInit() {}
 
   get size(): string {
     return this.level * 8 + 'px';

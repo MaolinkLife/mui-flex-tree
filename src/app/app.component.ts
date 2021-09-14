@@ -20,7 +20,6 @@ export class AppComponent implements OnInit {
   }
 
   unSelectTreeNodes(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
-    console.log('recursity node', node, 'current', node);
     if (node.children && node.children.length > 0) {
       for (const childNode of node.children) {
         this.unSelectTreeNodes(childNode, currentNode);
