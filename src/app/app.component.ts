@@ -22,7 +22,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     const tree = this.covertedTree(TREE_DATA);
-    console.log('converted', tree);
     this.tree$.next(tree);
   }
 

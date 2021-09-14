@@ -20,6 +20,10 @@ export class TreeNodeComponent implements OnInit {
   @Input()
   node: FlattenTreeNode;
 
+  @HostBinding('attr.data-host-parent-selected')
+  @Input()
+  parentSelected: boolean;
+
   @Output()
   expandNodeChange: EventEmitter<FlattenTreeNode> = new EventEmitter();
 

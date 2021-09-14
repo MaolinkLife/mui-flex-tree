@@ -15,7 +15,7 @@ export const TREE_DATA = {
       data: {
         name: 'CHILD_1',
         type: 'TYPE_2',
-        id: 1
+        id: 22
       },
       isExpand: false,
       isSelect: false,
@@ -27,7 +27,7 @@ export const TREE_DATA = {
       data: {
         name: 'CHILD_2',
         type: 'TYPE_2',
-        id: 2
+        id: 41
       },
       isExpand: false,
       isSelect: false,
@@ -38,7 +38,7 @@ export const TREE_DATA = {
           data: {
             name: 'CHILD_2.1',
             type: 'TYPE_3',
-            id: 2
+            id: 51
           },
           isExpand: false,
           isSelect: false,
@@ -50,7 +50,7 @@ export const TREE_DATA = {
           data: {
             name: 'CHILD_2.2',
             type: 'TYPE_3',
-            id: 2
+            id: 35
           },
           isExpand: false,
           isSelect: false,
