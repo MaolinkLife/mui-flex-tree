@@ -1,7 +1,7 @@
 <div class="container" [attr.selected]="selected" (click)="$event.stopPropagation(); selectNode($event)">
   <div class="tree-node" [ngStyle]="{'margin-left': size}">
-    <div *ngIf="node.data.type !== 'TYPE_1' && node.expandable" class="expand-icon"
-      [ngClass]="{'_expand': node.isExpand}" (click)="$event.stopPropagation(); expandNode($event)">
+    <div *ngIf="node.data.type !== 'ROOT' && node.expandable" class="expand-icon" [ngClass]="{'_expand': node.isExpand}"
+      (click)="$event.stopPropagation(); expandNode($event)">
       <div class="icon" size="s" style="width: 8px; height:8px">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -12,23 +12,96 @@
     </div>
 
     <div class="tree-node__icon">
-      <div class="icon">
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <g clip-path="url(#clip0)">
+      <ng-container [ngSwitch]="node.data.type">
+        <div *ngSwitchCase="'TYPE_1'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" focusable="false">
+            <path fill="currentColor"
+              d="M8.4 3H14c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H2c-1.1 0-2-.9-2-2V3c0-1.1.9-2 2-2h4c.3 0 .5.1.7.3L8.4 3zM5.6 3H2v10h12V5H8c-.3 0-.5-.1-.7-.3L5.6 3z">
+            </path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_2'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#cbcfd3"></path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#959ba4"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_3'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#8f75d1" fill-opacity=".48">
+            </path>
             <path
-              d="M15.7324 7.28346L13.3075 4.85859V2.05744C13.3075 1.55096 12.8971 1.14049 12.3899 1.14049C11.8838 1.14049 11.4734 1.55096 11.4734 2.05744V3.02446L9.66785 1.21888C8.77519 0.326697 7.22314 0.32828 6.33251 1.22049L0.269415 7.28346C-0.088503 7.64209 -0.088503 8.22238 0.269415 8.58046C0.627495 8.93899 1.20891 8.93899 1.56686 8.58046L7.62938 2.51732C7.82688 2.32086 8.17498 2.32086 8.37144 2.51674L14.435 8.58046C14.6148 8.75974 14.8492 8.84891 15.0836 8.84891C15.3184 8.84891 15.5532 8.75964 15.7324 8.58046C16.0905 8.22241 16.0905 7.64213 15.7324 7.28346Z"
-              fill="currentColor" />
+              d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2zM6.9 18.5L10 13l2 4 2-2 2.7 3.4c.3.4.3 1.1-.2 1.4-.2.1-.4.2-.6.2H7.7c-.6 0-1-.4-1-1 0-.2.1-.3.2-.5z"
+              fill="#8f75d1"></path>
+            <circle cx="15" cy="13" r="1" fill="#8f75d1"></circle>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_4'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#cbcfd3"></path>
             <path
-              d="M8.31885 4.25789C8.1427 4.08184 7.85748 4.08184 7.68185 4.25789L2.34873 9.58943C2.26453 9.6736 2.2168 9.78851 2.2168 9.90843V13.7971C2.2168 14.7095 2.95666 15.4494 3.86912 15.4494H6.50955V11.3602H9.49056V15.4494H12.131C13.0435 15.4494 13.7833 14.7095 13.7833 13.7971V9.90843C13.7833 9.78851 13.736 9.6736 13.6514 9.58943L8.31885 4.25789Z"
-              fill="currentColor" />
-          </g>
-          <defs>
-            <clipPath id="clip0">
-              <rect width="16" height="16" fill="white" />
-            </clipPath>
-          </defs>
-        </svg>
-      </div>
+              d="M9 20h3v2H9c-.6 0-1-.4-1-1s.4-1 1-1zm3-2h3c.6 0 1 .4 1 1s-.4 1-1 1h-3v-2zm-3-2h3v2H9c-.6 0-1-.4-1-1s.4-1 1-1zm3-2h3c.6 0 1 .4 1 1s-.4 1-1 1h-3v-2zm-3-2h3v2H9c-.6 0-1-.4-1-1s.4-1 1-1zM14 2l6 6h-4c-1.1 0-2-.9-2-2V2z"
+              fill="#959ba4"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_5'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#8f75d1" fill-opacity=".48">
+            </path>
+            <path
+              d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2zM6.9 18.5L10 13l2 4 2-2 2.7 3.4c.3.4.3 1.1-.2 1.4-.2.1-.4.2-.6.2H7.7c-.6 0-1-.4-1-1 0-.2.1-.3.2-.5z"
+              fill="#8f75d1"></path>
+            <circle cx="15" cy="13" r="1" fill="#8f75d1"></circle>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_6'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#8f75d1" fill-opacity=".48">
+            </path>
+            <circle cx="9" cy="17" r="2" fill="none" stroke="#8f75d1" stroke-width="2"></circle>
+            <path d="M11 17V9l3 3" fill="none" stroke="#8f75d1" stroke-width="2" stroke-linecap="round"></path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#8f75d1"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_7'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#e01f19" fill-opacity=".48">
+            </path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#e01f19"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_8'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#ee805d" fill-opacity=".48">
+            </path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#ee805d"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_9'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#39b54a" fill-opacity=".48">
+            </path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#39b54a"></path>
+          </svg>
+        </div>
+
+        <div *ngSwitchCase="'TYPE_10'" class="icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" focusable="false">
+            <path d="M6 2h8l6 6v12c0 1.1-.9 2-2 2H6c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2z" fill="#5485b8" fill-opacity=".48">
+            </path>
+            <path d="M14 2l6 6h-4c-1.1 0-2-.9-2-2V2z" fill="#5485b8"></path>
+          </svg>
+        </div>
+
+      </ng-container>
     </div>
 
     <div>

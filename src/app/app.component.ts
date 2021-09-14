@@ -4,8 +4,10 @@ import { FlattenTreeNode, TreeNode } from './interfaces/tree.interface';
 import { TREE_DATA } from './tree-data';
 
 enum TYPES {
+  'ROOT',
   'TYPE_1',
-  'TYPE_2'
+  'TYPE_2',
+  'TYPE_3'
 }
 
 @Component({
@@ -38,7 +40,7 @@ export class AppComponent implements OnInit {
         id: node.data.id,
         type: node.data.type
       },
-      isExpand: node.data.type === 'TYPE_1' ? true : false,
+      isExpand: node.data.type === 'ROOT' ? true : false,
       isSelect: false,
       type: TYPES[node.data.type],
       ...(convertedNodes.length > 0 ? { children: convertedNodes } : {})
@@ -47,6 +49,7 @@ export class AppComponent implements OnInit {
     return flattenNode;
   }
 
+  /** Убирает селект со всех нод */
   unSelectTreeNodes(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
     if (node.children && node.children.length > 0) {
       node.children.forEach((childNode: FlattenTreeNode) =>
@@ -59,14 +62,20 @@ export class AppComponent implements OnInit {
     }
   }
 
+  /** Раскрывает ноду */
   expandNodeTree(node: FlattenTreeNode): void {
     node.isExpand = !node.isExpand;
+
+    console.log('expanded Node', node);
   }
 
+  /** Выбор ноды */
   selectNodeTree(node: FlattenTreeNode): void {
     if (!node.isSelect) {
       this.unSelectTreeNodes(this.tree$.value, node);
       node.isSelect = true;
     }
+
+    console.log('selected Node', node);
   }
 }
