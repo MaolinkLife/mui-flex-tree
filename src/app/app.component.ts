@@ -26,6 +26,7 @@ export class AppComponent implements OnInit {
     this.tree$.next(tree);
   }
 
+  /** Конрветирует данные для отрисовки в дереве */
   covertedTree(node: TreeNode): FlattenTreeNode {
     let convertedNodes: FlattenTreeNode[] = [];
 
@@ -51,18 +52,21 @@ export class AppComponent implements OnInit {
     return flattenNode;
   }
 
-  unSelectTreeNodes(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
+  unSelectTreeNodes(
+    node: FlattenTreeNode,
+    currentNode: FlattenTreeNode
+  ): FlattenTreeNode {
     if (node.children && node.children.length > 0) {
-      for (const childNode of node.children) {
-        this.unSelectTreeNodes(childNode, currentNode);
-      }
+      node.children.forEach((childNode: FlattenTreeNode) =>
+        this.unSelectTreeNodes(childNode, currentNode)
+      );
     }
 
     if (currentNode.data.id !== node.data.id) {
       node.isSelect = false;
+      console.log(node);
     }
-
-    return;
+    return node;
   }
 
   expandNodeTree(node: FlattenTreeNode): void {
