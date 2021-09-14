@@ -26,17 +26,18 @@ export class TreeNodeComponent implements OnInit {
   @Output()
   selectNodeChange: EventEmitter<FlattenTreeNode> = new EventEmitter();
 
-  @HostBinding()
-  get selected(): boolean {
-    return this.node.isSelect;
-  }
-
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    console.log(this.node);
+  }
 
   get size(): string {
     return this.level * 8 + 'px';
+  }
+
+  get selected(): boolean {
+    return this.node.isSelect;
   }
 
   get currentLevel(): number {
