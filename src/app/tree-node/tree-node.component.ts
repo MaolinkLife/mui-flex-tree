@@ -1,4 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  HostBinding,
+  Input,
+  OnInit,
+  Output
+} from '@angular/core';
 import { FlattenTreeNode } from '../interfaces/tree.interface';
 
 @Component({
@@ -19,6 +26,11 @@ export class TreeNodeComponent implements OnInit {
   @Output()
   selectNodeChange: EventEmitter<FlattenTreeNode> = new EventEmitter();
 
+  @HostBinding()
+  get selected(): boolean {
+    return this.node.isSelect;
+  }
+
   constructor() {}
 
   ngOnInit() {}
@@ -31,11 +43,6 @@ export class TreeNodeComponent implements OnInit {
     console.log(this.level);
     return this.level + 1;
   }
-
-  get isSelected(): boolean {
-    return false;
-  }
-
   selectNode(): void {}
 
   expandNode(event: MouseEvent): void {
