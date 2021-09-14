@@ -1,5 +1,6 @@
-import { Component, VERSION } from '@angular/core';
-import { FlattenTreeNode, TreeNode } from './interfaces/tree.interface';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
+import { FlattenTreeNode } from './interfaces/tree.interface';
 import { TREE_DATA } from './tree-data';
 
 @Component({
@@ -7,19 +8,27 @@ import { TREE_DATA } from './tree-data';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
+  tree$: BehaviorSubject<FlattenTreeNode> = new BehaviorSubject(null);
+
   get rootTree(): FlattenTreeNode {
     return TREE_DATA;
   }
 
-  recursity(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
+  ngOnInit(): void {
+    this.tree$.next(TREE_DATA);
+  }
+
+  unSelectTreeNodes(node: FlattenTreeNode, currentNode: FlattenTreeNode): void {
+    console.log('recursity node', node, 'current', node);
     if (node.children && node.children.length > 0) {
       for (const childNode of node.children) {
-        this.recursity(childNode, currentNode);
+        this.unSelectTreeNodes(childNode, currentNode);
       }
     }
 
     if (currentNode.data.id !== node.data.id) {
+      node.isSelect = false;
     }
 
     return;
@@ -34,15 +43,7 @@ export class AppComponent {
       const currentNodeSelect = node.isSelect;
       const root = this.rootTree;
 
-      if (root.data.id !== node.data.id) {
-        if (root.children && root.children.length > 0) {
-          for (const childNode of root.children) {
-            if (childNode.data.id !== node.data.id) {
-            }
-          }
-        }
-      }
-
+      this.unSelectTreeNodes(this.tree$.value, node);
       node.isSelect = true;
     }
   }

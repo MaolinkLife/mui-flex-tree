@@ -43,7 +43,9 @@ export class TreeNodeComponent implements OnInit {
     console.log(this.level);
     return this.level + 1;
   }
-  selectNode(): void {}
+  selectNode(event: MouseEvent): void {
+    this.selectNodeChange.emit(this.node);
+  }
 
   expandNode(event: MouseEvent): void {
     this.expandNodeChange.emit(this.node);

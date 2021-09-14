@@ -1,4 +1,4 @@
-<div class="container" [attr.selected]="node.isSelect">
+<div class="container" [attr.selected]="node.isSelect" (click)="$event.stopPropagation(); selectNode($event)">
   <div class="tree-node" [ngStyle]="{'margin-left': size}">
     <div *ngIf="node.type !== 'TYPE_1' && node.expandable" class="expand-icon" [ngClass]="{'_expand': node.isExpand}"
       (click)="$event.stopPropagation(); expandNode($event)">
@@ -39,6 +39,6 @@
 
 <div *ngIf="node.children && node.children.length && node.isExpand">
   <mui-tree-node *ngFor="let childNode of node.children" [node]="childNode" [level]="level + 1"
-    (expandNodeChange)="expandNodeChange.emit($event)">
+    (expandNodeChange)="expandNodeChange.emit($event)" (selectNodeChange)="selectNodeChange.emit($event)">
   </mui-tree-node>
 </div>
