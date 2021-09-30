@@ -1,19 +1,21 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostBinding,
   Input,
   OnInit,
-  Output
+  Output,
 } from '@angular/core';
 import { FlattenTreeNode } from '../interfaces/tree.interface';
 
 @Component({
   selector: 'mui-tree-node',
-  templateUrl: './tree-node.component.html',
-  styleUrls: ['./tree-node.component.less']
+  templateUrl: './mui-flex-tree-node.component.html',
+  styleUrls: ['./mui-flex-tree-node.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TreeNodeComponent implements OnInit {
+export class MuiFlexTreeNodeComponent implements OnInit {
   @Input()
   level: number;
 
